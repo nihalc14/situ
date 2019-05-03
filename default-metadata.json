@@ -1,5 +1,5 @@
 {
-  "version": 44,
+  "version": 62,
   "tenantid": "SITU8",
   "mobappid": 9392,
   "appName": "Singapore Institute of Technology",
@@ -42,35 +42,12 @@
           "quickdialnumbers": 
           [
             {
-              "email": null,
+              "name": "Campus",
               "contactname": null,
               "number": "656-592-1189",
-              "name": "Campus"
+              "email": null
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": 145970,
-      "name": "Webpageone",
-      "displayname": "Webpage one",
-      "logo": "SITU8/Webpageone.png",
-      "logourl": "SITU8/Webpageone.png",
-      "description": "Webpage one",
-      "appFeatureType": "Public",
-      "roles": null,
-      "showInDock": false,
-      "showInHome": true,
-      "networkrequired": true,
-      "analytics": true,
-      "pages": 
-      [
-        {
-          "pageid": "Webpageone",
-          "pageTemplate": "<div><\/div>",
-          "pageprocessor": "function pageprocessorWebpageone(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n\r\n  var iabRef;\r\n  if (window.device) {\r\n    $.blockUI();\r\n    iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes,enableViewportScale=yes,clearcache=yes\");\r\n  } else {\r\n    iabRef = window.open(pagedef.url, \"_blank\");\r\n\r\n  }\r\n\r\n  if (!window.device) {\r\n    window.history.back();\r\n  }\r\n\r\n  var hideBlockUi = function() {\r\n    $.unblockUI();\r\n    iabRef.show();\r\n  };\r\n  var iabClose = function(data) {\r\n    $.unblockUI();\r\n    iabRef.removeEventListener(\"exit\", iabClose);\r\n    window.history.back();\r\n  };\r\n  iabRef.addEventListener(\"exit\", iabClose);\r\n  var loadStop = function(data) {\r\n    hideBlockUi();\r\n    iabRef.removeEventListener(\"loadstop\", loadStop);\r\n  };\r\n  iabRef.addEventListener(\"loadstop\", loadStop);\r\n}",
-          "url": "https://registrar.utexas.edu/schedules"
         }
       ]
     },
@@ -84,7 +61,7 @@
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -107,7 +84,7 @@
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -128,9 +105,9 @@
           "newsFeeds": 
           [
             {
-              "role": null,
               "label": "News",
-              "feedUrl": "http://www.singaporetech.edu.sg/digitalnewsroom/tagfeed/en/tags/News"
+              "feedUrl": "http://www.singaporetech.edu.sg/digitalnewsroom/tagfeed/en/tags/News",
+              "role": "public"
             }
           ]
         },
@@ -161,7 +138,7 @@
           "pageid": "NewsandEvents74",
           "pageTemplate": "<div><\/div>",
           "pageprocessor": "function pageprocessorNewsandEvents74(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  var appnames = pagedef.appnames.split(\",\");\r\n  $rootScope.back = function() {\r\n    $rootScope.leftToRight = true;\r\n    $location.path(\"/app/Menu82/Menu82\");\r\n    //window.location.href = \"index.html#app/Menu82/Menu82\";\r\n  }\r\n  var results = [];\r\n  for (var i = 0; i < appnames.length; i++) {\r\n    for (var j = 0; j < $rootScope.apps.length; j++) {\r\n      if ($rootScope.apps[j].displayname == appnames[i]) {\r\n        results.push($rootScope.apps[j]);\r\n      }\r\n    }\r\n  }\r\n  $scope.groupapps = results;\r\n  $rootScope.appDisplayName = $rootScope.mobileAppName;\r\n  var data1 = $compile($(pagedef.datatemplate))($scope);\r\n  $(\"#appContent\").append(data1);\r\n\r\n  /*var data2 = '<div class=\"list-group-item proximaFont borderNone listItemCustomPadding ng-scope\" style=\"background-color: #252729 !important;padding:0px 18px 8px 18px;\"><div class=\"hamburgerSearchBox\"><input class=\"form-control needsclick\" placeholder=\"Search Applets\" style=\"background: transparent;border: none;color: #fff;padding: 6px 6px;\" type=\"text\" /><\/div><\/div>';\r\n  var htmlView = $compile($(data2))($scope);\r\n\r\n  $(\"#fixedHeaderContent\").html(htmlView);*/\r\n\r\n  $scope.$on(\"$destroy\", function() {\r\n    $(\"#fixedHeaderContent\").html(\"\");\r\n  });\r\n  $('input:text').focusout(function() {\r\n\r\n    /*  document.getElementsByClassName('footerGroupIcons')[0].style.display = \"block !important\";\r\n     alert(document.getElementsByClassName('footerGroupIcons')[0].style.display);*/\r\n\r\n    $(\"#footerContentContainer\").addClass('footerGroupIcons').removeClass('hideFooter');\r\n    $(\"#bottomPoweredBy\").removeClass('hideFooter');\r\n\r\n  });\r\n\r\n  $('input:text').focusin(function() {\r\n    // document.getElementsByClassName('footerGroupIcons')[0].style.display = \"none !important\";\r\n    // alert(document.getElementsByClassName('footerGroupIcons')[0].style.display);\r\n    //$(\".footerGroupIcons\").css('display', 'none !important');\r\n\r\n    $(\"#footerContentContainer\").addClass('hideFooter').removeClass('footerGroupIcons');\r\n    $(\"#bottomPoweredBy\").addClass('hideFooter');\r\n  })\r\n}",
-          "appnames": "Campus News,Campus Event",
+          "appnames": "News,Event",
           "datatemplate": "<style type=\"text/css\">\r\n  .navbar-absolute-top div.pull-right div.btn-navbar {\r\n    display: block !important;\r\n  }\r\n  \r\n  .footerGroupIcons div div img {\r\n    opacity: 0.4;\r\n  }\r\n  \r\n  .footerGroupIcons div div a div {}\r\n  \r\n  .divMenu img {\r\n    opacity: 1 !important;\r\n  }\r\n  \r\n  .divMenu {\r\n    opacity: 1 !important;\r\n  }\r\n  \r\n  .divMenu a div.openSans {}\r\n  \r\n  #fixedHeaderContent {\r\n    display: none;\r\n  }\r\n  \r\n  .app-body {\r\n    background-color: #eaebec;\r\n    background: #eaebec;\r\n  }\r\n  \r\n  a.list-group-item:hover,\r\n  a.list-group-item:active {\r\n    background-color: #fff;\r\n    background: #fff;\r\n  }\r\n  \r\n  .navbar-absolute-top {\r\n    border: none !important;\r\n  }\r\n  \r\n  .has-navbar-top .app-body {\r\n    padding-top: 50px;\r\n  }\r\n  \r\n  #fixedHeaderContent {\r\n    display: block;\r\n    top: 50px;\r\n  }\r\n  \r\n  .transparent {\r\n    background: transparent !important;\r\n  }\r\n  \r\n  .group-heading-padding {\r\n    padding: 5px 15px !important;\r\n  }\r\n<\/style>\r\n<div class=\"proximaFont\">\r\n  <!--<div class=\"list-group-item proximaFont borderNone listItemCustomPadding ng-scope\" style=\"background-color: #252729 !important;padding:0px 18px 8px 18px;\">\r\n    <div class=\"hamburgerSearchBox\">\r\n      <input class=\"form-control needsclick\" ng-model=\"$root.appletSearch\" placeholder=\"Search Applets\" style=\"background: transparent;border: none;color: #fff;padding: 6px 6px;\" type=\"text\" />\r\n    <\/div>\r\n  <\/div>-->\r\n  <div class=\"list-group-item transparent proximaFont group-heading-padding\">CALENDARS<\/div>\r\n  <a aria-label=\"{{app.displayname}}\" class=\"list-group-item listItemCustomPadding listitemborderSolid\" href=\"#/app/{{app.name}}/{{app.name}}\" ng-repeat=\"app in groupapps\">\r\n    <div class=\"pull-left\"><img class=\"avatar\" style=\"width:36px;\" id=\"logo-{{app.name}}\" src=\"{{app.logo}}\" alt=\"\">\r\n    <\/div>\r\n    <div style=\"margin-left:9px;display:inline-block !important;margin-top:9px !important;\" class='pull-left fontSize14 proximaSemiBoldFont' ng-if=\"app.displayname == 'WhatsUp'\">What's Up\r\n    <\/div>\r\n    <div style=\"margin-left:9px;display:inline-block !important;margin-top:9px !important;\" class='pull-left fontSize14 proximaSemiBoldFont' ng-if=\"app.displayname != 'WhatsUp'\">{{app.displayname}}\r\n    <\/div>\r\n    <div class=\"clearfix\"><\/div>\r\n  <\/a>\r\n<\/div>"
         }
       ]
@@ -189,88 +166,88 @@
           "feeds": 
           [
             {
-              "scourl": "http://pimaaztecs.com/sports/xc/{{curr-next}}/schedule?print=rss",
               "name": "CrossCountry",
-              "newsurl": "http://pimaaztecs.com/sports/xc/headlines-featured?feed=rss_2.0",
-              "schurl": "http://pimaaztecs.com/sports/xc/{{curr-next}}/schedule?print=rss"
+              "schurl": "http://pimaaztecs.com/sports/xc/{{curr-next}}/schedule?print=rss",
+              "scourl": "http://pimaaztecs.com/sports/xc/{{curr-next}}/schedule?print=rss",
+              "newsurl": "http://pimaaztecs.com/sports/xc/headlines-featured?feed=rss_2.0"
             },
             {
               "name": "Football",
               "newsurl": "http://pimaaztecs.com/sports/fball/headlines-featured?feed=rss_2.0",
-              "scourl": "http://pimaaztecs.com/sports/fball/{{curr-next}}/schedule?print=rss",
-              "schurl": "http://pimaaztecs.com/sports/fball/{{curr-next}}/schedule?print=rss"
+              "schurl": "http://pimaaztecs.com/sports/fball/{{curr-next}}/schedule?print=rss",
+              "scourl": "http://pimaaztecs.com/sports/fball/{{curr-next}}/schedule?print=rss"
             },
             {
               "newsurl": "http://pimaaztecs.com/sports/msoc/headlines-featured?feed=rss_2.0",
-              "schurl": "http://pimaaztecs.com/sports/msoc/{{curr-next}}/schedule?print=rss",
               "name": "Soccer(Men's)",
-              "scourl": "http://pimaaztecs.com/sports/msoc/{{curr-next}}/schedule?print=rss"
+              "scourl": "http://pimaaztecs.com/sports/msoc/{{curr-next}}/schedule?print=rss",
+              "schurl": "http://pimaaztecs.com/sports/msoc/{{curr-next}}/schedule?print=rss"
             },
             {
-              "newsurl": "http://pimaaztecs.com/sports/wsoc/headlines-featured?feed=rss_2.0",
+              "scourl": "http://pimaaztecs.com/sports/wsoc/{{curr-next}}/schedule?print=rss",
               "name": "Soccer(Women's)",
-              "schurl": "http://pimaaztecs.com/sports/wsoc/{{curr-next}}/schedule?print=rss",
-              "scourl": "http://pimaaztecs.com/sports/wsoc/{{curr-next}}/schedule?print=rss"
+              "newsurl": "http://pimaaztecs.com/sports/wsoc/headlines-featured?feed=rss_2.0",
+              "schurl": "http://pimaaztecs.com/sports/wsoc/{{curr-next}}/schedule?print=rss"
             },
             {
-              "newsurl": "http://pimaaztecs.com/sports/wvball/headlines-featured?feed=rss_2.0",
-              "schurl": "http://pimaaztecs.com/sports/wvball/{{curr-next}}/schedule?print=rss",
               "scourl": "http://pimaaztecs.com/sports/wvball/{{curr-next}}/schedule?print=rss",
+              "schurl": "http://pimaaztecs.com/sports/wvball/{{curr-next}}/schedule?print=rss",
+              "newsurl": "http://pimaaztecs.com/sports/wvball/headlines-featured?feed=rss_2.0",
               "name": "Volleyball"
             },
             {
-              "name": "Basketball(Men's)",
               "schurl": "http://pimaaztecs.com/sports/mbkb/{{curr-next}}/schedule?print=rss",
+              "scourl": "http://pimaaztecs.com/sports/mbkb/{{curr-next}}/schedule?print=rss",
               "newsurl": "http://pimaaztecs.com/sports/mbkb/headlines-featured?feed=rss_2.0",
-              "scourl": "http://pimaaztecs.com/sports/mbkb/{{curr-next}}/schedule?print=rss"
+              "name": "Basketball(Men's)"
             },
             {
-              "schurl": "http://pimaaztecs.com/sports/wbkb/{{curr-next}}/schedule?print=rss",
               "name": "Basketball(Women's)",
+              "schurl": "http://pimaaztecs.com/sports/wbkb/{{curr-next}}/schedule?print=rss",
               "newsurl": "http://pimaaztecs.com/sports/wbkb/headlines-featured?feed=rss_2.0",
               "scourl": "http://pimaaztecs.com/sports/wbkb/{{curr-next}}/schedule?print=rss"
             },
             {
-              "scourl": "http://pimaaztecs.com/sports/bsb/{{curr-next}}/schedule?print=rss",
+              "schurl": "http://pimaaztecs.com/sports/bsb/{{curr-next}}/schedule?print=rss",
               "newsurl": "http://pimaaztecs.com/sports/bsb/headlines-featured?feed=rss_2.0",
               "name": "Baseball",
-              "schurl": "http://pimaaztecs.com/sports/bsb/{{curr-next}}/schedule?print=rss"
+              "scourl": "http://pimaaztecs.com/sports/bsb/{{curr-next}}/schedule?print=rss"
             },
             {
-              "scourl": "http://pimaaztecs.com/sports/mgolf/{{curr-next}}/schedule?print=rss",
               "newsurl": "http://pimaaztecs.com/sports/mgolf/headlines-featured?feed=rss_2.0",
+              "scourl": "http://pimaaztecs.com/sports/mgolf/{{curr-next}}/schedule?print=rss",
               "schurl": "http://pimaaztecs.com/sports/mgolf/{{curr-next}}/schedule?print=rss",
               "name": "Golf(Men's)"
             },
             {
-              "schurl": "http://pimaaztecs.com/sports/wgolf/{{curr-next}}/schedule?print=rss",
-              "name": "Golf(Women's)",
+              "newsurl": "http://pimaaztecs.com/sports/wgolf/headlines-featured?feed=rss_2.0",
               "scourl": "http://pimaaztecs.com/sports/wgolf/{{curr-next}}/schedule?print=rss",
-              "newsurl": "http://pimaaztecs.com/sports/wgolf/headlines-featured?feed=rss_2.0"
+              "name": "Golf(Women's)",
+              "schurl": "http://pimaaztecs.com/sports/wgolf/{{curr-next}}/schedule?print=rss"
             },
             {
-              "name": "Softball",
               "schurl": "http://pimaaztecs.com/sports/sball/{{curr-next}}/schedule?print=rss",
+              "name": "Softball",
               "newsurl": "http://pimaaztecs.com/sports/sball/headlines-featured?feed=rss_2.0",
               "scourl": "http://pimaaztecs.com/sports/sball/{{curr-next}}/schedule?print=rss"
             },
             {
-              "newsurl": "http://pimaaztecs.com/sports/mten/headlines-featured?feed=rss_2.0",
               "name": "Tennis(Men's)",
               "schurl": "http://pimaaztecs.com/sports/mten/{{curr-next}}/schedule?print=rss",
+              "newsurl": "http://pimaaztecs.com/sports/mten/headlines-featured?feed=rss_2.0",
               "scourl": "http://pimaaztecs.com/sports/mten/{{curr-next}}/schedule?print=rss"
             },
             {
-              "scourl": "http://pimaaztecs.com/sports/wten/{{curr-next}}/schedule?print=rss",
               "newsurl": "http://pimaaztecs.com/sports/wten/headlines-featured?feed=rss_2.0",
               "schurl": "http://pimaaztecs.com/sports/wten/{{curr-next}}/schedule?print=rss",
-              "name": "Tennis(Women's)"
+              "name": "Tennis(Women's)",
+              "scourl": "http://pimaaztecs.com/sports/wten/{{curr-next}}/schedule?print=rss"
             },
             {
-              "name": "Track and Field",
-              "schurl": "http://pimaaztecs.com/sports/track/{{curr-next}}/schedule?print=rss",
+              "scourl": "http://pimaaztecs.com/sports/track/{{curr-next}}/schedule?print=rss",
               "newsurl": "http://pimaaztecs.com/sports/track/headlines-featured?feed=rss_2.0",
-              "scourl": "http://pimaaztecs.com/sports/track/{{curr-next}}/schedule?print=rss"
+              "schurl": "http://pimaaztecs.com/sports/track/{{curr-next}}/schedule?print=rss",
+              "name": "Track and Field"
             }
           ]
         },
@@ -359,8 +336,8 @@
           [
             {
               "channelId": "UCoLSRpZqPJMw1Pqt614H3HA",
-              "label": "Campus Videos",
-              "role": null
+              "role": "public",
+              "label": "Campus Videos"
             }
           ]
         },
@@ -382,7 +359,7 @@
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -405,7 +382,7 @@
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -421,14 +398,14 @@
     {
       "id": 146006,
       "name": "EventsWebpage3",
-      "displayname": "Events",
+      "displayname": "Event",
       "logo": "SITU8/EventsWebpage3.png",
       "logourl": "SITU8/EventsWebpage3.png",
       "description": "Events Webpage",
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -437,7 +414,7 @@
           "pageid": "EventsWebpage3",
           "pageTemplate": "<div><\/div>",
           "pageprocessor": "function pageprocessorEventsWebpage3(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  if (window.device) {\r\n    $.blockUI();\r\n  }\r\n  var iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes,enableViewportScale=yes,clearcache=yes\");\r\n  var hideBlockUi = function() {\r\n    $.unblockUI();\r\n    iabRef.show();\r\n  };\r\n  var iabClose = function(data) {\r\n    $.unblockUI();\r\n    iabRef.removeEventListener(\"exit\", iabClose);\r\n    window.screen.orientation.lock('portrait')\r\n    window.history.back();\r\n  };\r\n  iabRef.addEventListener(\"exit\", iabClose);\r\n  var loadStop = function(data) {\r\n    hideBlockUi();\r\n    iabRef.removeEventListener(\"loadstop\", loadStop);\r\n  };\r\n  iabRef.addEventListener(\"loadstop\", loadStop);\r\n}",
-          "url": "http://swtjc.edu/campus-life/events/index.html"
+          "url": "https://www.singaporetech.edu.sg/upcoming-events"
         }
       ]
     },
@@ -474,7 +451,7 @@
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -506,7 +483,7 @@
           "pageid": "SocialNetworking",
           "pageTemplate": "<div><\/div>",
           "pageprocessor": "function pageprocessorSocialNetworking(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  $rootScope.back = function() {\r\n    $rootScope.leftToRight = true;\r\n    $location.path(\"/app/Menu82/Menu82\");\r\n    //window.location.href = \"index.html#app/Menu82/Menu82\";\r\n  }\r\n  var appnames = pagedef.appnames.split(\",\");\r\n  var results = [];\r\n  for (var i = 0; i < appnames.length; i++) {\r\n    for (var j = 0; j < $rootScope.apps.length; j++) {\r\n      if ($rootScope.apps[j].displayname == appnames[i]) {\r\n        results.push($rootScope.apps[j]);\r\n      }\r\n    }\r\n  }\r\n  $scope.groupapps = results;\r\n  $rootScope.appDisplayName = $rootScope.mobileAppName;\r\n  var data1 = $compile($(pagedef.datatemplate))($scope);\r\n  $(\"#appContent\").append(data1);\r\n\r\n  /*var data2 = '<div class=\"list-group-item proximaFont borderNone listItemCustomPadding ng-scope\" style=\"background-color: #252729 !important;padding:0px 18px 8px 18px;\"><div class=\"hamburgerSearchBox\"><input class=\"form-control needsclick\" placeholder=\"Search Applets\" style=\"background: transparent;border: none;color: #fff;padding: 6px 6px;\" type=\"text\" /><\/div><\/div>';\r\n  var htmlView = $compile($(data2))($scope);\r\n\r\n  $(\"#fixedHeaderContent\").html(htmlView);*/\r\n\r\n  $scope.$on(\"$destroy\", function() {\r\n    $(\"#fixedHeaderContent\").html(\"\");\r\n  });\r\n  $('input:text').focusout(function() {\r\n\r\n    /*  document.getElementsByClassName('footerGroupIcons')[0].style.display = \"block !important\";\r\n     alert(document.getElementsByClassName('footerGroupIcons')[0].style.display);*/\r\n\r\n    $(\"#footerContentContainer\").addClass('footerGroupIcons').removeClass('hideFooter');\r\n    $(\"#bottomPoweredBy\").removeClass('hideFooter');\r\n\r\n  });\r\n\r\n  $('input:text').focusin(function() {\r\n    // document.getElementsByClassName('footerGroupIcons')[0].style.display = \"none !important\";\r\n    // alert(document.getElementsByClassName('footerGroupIcons')[0].style.display);\r\n    //$(\".footerGroupIcons\").css('display', 'none !important');\r\n\r\n    $(\"#footerContentContainer\").addClass('hideFooter').removeClass('footerGroupIcons');\r\n    $(\"#bottomPoweredBy\").addClass('hideFooter');\r\n  })\r\n}",
-          "appnames": "WhatsUp,Twitter,Facebook,LinkedIn,Flickr",
+          "appnames": "WhatsUp,Twitter,Facebook,LinkedIn,Flickr,Photos",
           "datatemplate": "<style type=\"text/css\">\r\n  .navbar-absolute-top div.pull-right div.btn-navbar {\r\n    display: block !important;\r\n  }\r\n  \r\n  .footerGroupIcons div div img {\r\n    opacity: 0.4;\r\n  }\r\n  \r\n  .footerGroupIcons div div a div {}\r\n  \r\n  .divMenu img {\r\n    opacity: 1 !important;\r\n  }\r\n  \r\n  .divMenu {\r\n    opacity: 1 !important;\r\n  }\r\n  \r\n  .divMenu a div.openSans {}\r\n  \r\n  #fixedHeaderContent {\r\n    display: none;\r\n  }\r\n  \r\n  .app-body {\r\n    background-color: #eaebec;\r\n    background: #eaebec;\r\n  }\r\n  \r\n  a.list-group-item:hover,\r\n  a.list-group-item:active {\r\n    background-color: #fff;\r\n    background: #fff;\r\n  }\r\n  \r\n  .navbar-absolute-top {\r\n    border: none !important;\r\n  }\r\n  \r\n  .has-navbar-top .app-body {\r\n    padding-top: 50px;\r\n  }\r\n  \r\n  #fixedHeaderContent {\r\n    display: block;\r\n    top: 50px;\r\n  }\r\n  \r\n  .transparent {\r\n    background: transparent !important;\r\n  }\r\n  \r\n  .group-heading-padding {\r\n    padding: 5px 15px !important;\r\n  }\r\n<\/style>\r\n<div class=\"proximaFont\">\r\n  <!--<div class=\"list-group-item proximaFont borderNone listItemCustomPadding ng-scope\" style=\"background-color: #252729 !important;padding:0px 18px 8px 18px;\">\r\n    <div class=\"hamburgerSearchBox\">\r\n      <input class=\"form-control needsclick\" ng-model=\"$root.appletSearch\" placeholder=\"Search Applets\" style=\"background: transparent;border: none;color: #fff;padding: 6px 6px;\" type=\"text\" />\r\n    <\/div>\r\n  <\/div>-->\r\n  <div class=\"list-group-item transparent proximaFont group-heading-padding\">SOCIAL NETWORKING<\/div>\r\n  <a aria-label=\"{{app.displayname}}\" class=\"list-group-item listItemCustomPadding listitemborderSolid\" href=\"#/app/{{app.name}}/{{app.name}}\" ng-repeat=\"app in groupapps\">\r\n    <div class=\"pull-left\"><img class=\"avatar\" style=\"width:36px;\" id=\"logo-{{app.name}}\" src=\"{{app.logo}}\" alt=\"\"><\/div>\r\n    <div style=\"margin-left:9px;display:inline-block !important;margin-top:9px !important;\" class='pull-left fontSize14 proximaSemiBoldFont' ng-if=\"app.displayname == 'WhatsUp'\">What's Up<\/div>\r\n    <div style=\"margin-left:9px;display:inline-block !important;margin-top:9px !important;\" class='pull-left fontSize14 proximaSemiBoldFont' ng-if=\"app.displayname != 'WhatsUp'\">{{app.displayname}}<\/div>\r\n    <div class=\"clearfix\"><\/div>\r\n  <\/a>\r\n<\/div>"
         }
       ]
@@ -546,7 +523,7 @@
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -570,7 +547,7 @@
       "appFeatureType": "Public",
       "roles": null,
       "showInDock": false,
-      "showInHome": true,
+      "showInHome": false,
       "networkrequired": true,
       "analytics": true,
       "pages": 
@@ -719,6 +696,29 @@
           "pageprocessor": "function pageprocessorSignIn279(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  try {\r\n    var data1 = $compile($(pagedef.datatemplate))($scope);\r\n    $(\"#appContent\").append(data1);\r\n\r\n    $rootScope.back = function() {\r\n      $rootScope.fromCanvas = false;\r\n      $rootScope.leftToRight = true;\r\n      $location.path(\"/app/Menu82/Menu82\");\r\n      //window.location.href = \"index.html#app/Menu82/Menu82\";\r\n    }\r\n\r\n    $scope.username = '';\r\n    $scope.password = '';\r\n\r\n\r\n    $scope.openForgotPassword = function() {\r\n      $location.path(\"/app/ForgotPassword2/ForgotPassword2\");\r\n    };\r\n\r\n    $scope.byPassLogin = function() {\r\n\r\n      if ($scope.username == '') {\r\n\r\n        if (window.device) {\r\n          navigator.notification.alert(\r\n            'Missing Username', // message\r\n            null, // callback\r\n            'Error', // title\r\n            'OK' // buttonName\r\n          );\r\n        } else {\r\n          alert('Missing Username')\r\n        }\r\n\r\n        return;\r\n      }\r\n      if ($scope.password == '') {\r\n\r\n        if (window.device) {\r\n          navigator.notification.alert(\r\n            'Missing password', // message\r\n            null, // callback\r\n            'Error', // title\r\n            'OK' // buttonName\r\n          );\r\n        } else {\r\n          alert('Missing password')\r\n        }\r\n\r\n        return;\r\n      }\r\n\r\n\r\n      setTimeout(function() {\r\n        $scope.$apply(function() {\r\n          $rootScope.ticket = true;\r\n          $location.path(\"/app/Banner10/Banner10\");\r\n          //window.location.href = 'index.html#/app/Banner10/Banner10';\r\n        });\r\n      }, 300);\r\n\r\n\r\n    };\r\n\r\n\r\n    $scope.openUrl = function(url) {\r\n      window.open(url, '_blank');\r\n    }\r\n\r\n    $scope.$on(\"$destroy\", function() {\r\n      $(\".backButtonArrow\").show();\r\n    });\r\n\r\n  } catch (e) {\r\n    //alert(e)\r\n  }\r\n\r\n}",
           "endpoint": "NotDefined",
           "datatemplate": "<style>\r\n  #fixedHeaderContent {\r\n    display: none;\r\n  }\r\n  \r\n  .footerGroupIcons {\r\n    display: none !important;\r\n  }\r\n  \r\n  .signInBoxMob {\r\n    padding: 0 18px;\r\n  }\r\n  \r\n  .sideBarMenu {\r\n    display: none;\r\n  }\r\n  /*.backButtonArrow {\r\n        display: none;\r\n    }*/\r\n  \r\n  .app-body {\r\n    background-color: #fff;\r\n    background: #fff;\r\n  }\r\n  \r\n  .btnHover:hover,\r\n  .btnHover:focus {\r\n    color: #FFFFFF;\r\n  }\r\n  \r\n  #branding {\r\n    display: none;\r\n  }\r\n  \r\n  .loginPageBackButton {\r\n    display: none !important;\r\n  }\r\n  \r\n  .navbar-app {\r\n    display: none;\r\n  }\r\n  /*.headerFooterBg {\r\n        display: none;\r\n    }*/\r\n  \r\n  .createbutton {\r\n    background: transparent;\r\n    background-color: transparent;\r\n  }\r\n  \r\n  .createbutton:active {\r\n    background: #dac229 !important;\r\n    background-color: #dac229 !important;\r\n    border-color: #dac229 !important;\r\n    color: #fff !important;\r\n    outline: none !important;\r\n  }\r\n  \r\n  .createbutton:hover {\r\n    background: #dac229 !important;\r\n    background-color: #dac229 !important;\r\n    border-color: #dac229 !important;\r\n    color: #fff !important;\r\n    outline: none !important;\r\n  }\r\n  \r\n  .has-navbar-top .app-body {\r\n    padding-top: 0px;\r\n  }\r\n  \r\n  #bottomPoweredBy {\r\n    display: block;\r\n  }\r\n<\/style>\r\n<div class=\"greytext proximaFont\">\r\n  <div class=\"signInBoxMob\" style=\"margin-top:22%;\">\r\n    <div>\r\n      <div class=\"textcenter\"><img style='width:95%;max-width: 95%;' src=\"{{brandingUrl}}\" /><\/div>\r\n    <\/div>\r\n    <form ng-submit=\"byPassLogin();\">\r\n      <div class='list-group marginTop40'>\r\n        <li class=\"list-group-item backgroundNone listitemborderSolid colPadding listItemTop15Padding\">\r\n          <input name=\"loginUsername\" id=\"loginUsername\" type=\"text\" class=\"form-control fontSize16 backgroundNone borderNone leftPadding5px  greytext boxShadowNone\" placeholder=\"Username\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"\r\n          ng-model=\"username\">\r\n        <\/li>\r\n\r\n        <li class=\"list-group-item backgroundNone listitemborderSolid  colPadding listItemTop15Padding\">\r\n          <input name=\"loginPassword\" id=\"loginPassword\" type=\"password\" class=\"form-control fontSize16 backgroundNone borderNone leftPadding5px greytext boxShadowNone\" placeholder=\"Password\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"\r\n          ng-model=\"password\">\r\n        <\/li>\r\n      <\/div>\r\n      <div class=\"list-group-item backgroundNone borderNone colPadding marginTop40 proximaSemiBoldFont whitetext fontSize16\">\r\n        <input type=\"submit\" value=\"LOG IN\" class=\"btn btn-block whitetext borderRadius6 btnTopBottomPadding btnHover\" style=\"background:#092e6e !importnat;\">\r\n      <\/div>\r\n    <\/form>\r\n    <div class=\"list-group-item backgroundNone borderNone colPadding marginTop15 proximaSemiBoldFont greytext fontSize14\">\r\n      <!--Forgot Password<span class=\"fontb3b3b3\">&nbsp;|&nbsp;<\/span>First Time User-->\r\n      <span ng-click=\"openUrl('https://www.uhd.edu/myuhd/Pages/default.aspx');\">Forgot Password<\/span>\r\n    <\/div>\r\n\r\n    <!--<div class=\"list-group-item backgroundNone borderNone colPadding marginTop15 proximaFont fontb3b3b3 fontSize14\">\r\n            By logging in, you agree to our <span ng-click=\"openUrl('http://www.seark.edu/technology-services/technology-services-policies');\"><u>Terms of Services<\/u><\/span> and <span ng-click=\"openUrl('http://www.seark.edu/sites/default/files/documents/PrivacyStatement_v1.pdf');\"><u>Privacy Policy<\/u><\/span>.\r\n        <\/div>-->\r\n  <\/div>\r\n  <!-- <div class=\"list-group-item backgroundNone borderNone colPadding proximaSemiBoldFont fontSize16 padding18px\" style=\"width: 100%; margin-top:28px;\">\r\n          <div class=\"textcenter borderRadius6 btnTopBottomPadding backgroundNone btnBorder createbutton\" style=\"\" ontouchstart>CREATE YOUR ACCOUNT\r\n          <\/div>\r\n      <\/div> -->\r\n\r\n<\/div>"
+        }
+      ]
+    },
+    {
+      "id": 146051,
+      "name": "Webpageone",
+      "displayname": "Directory",
+      "logo": "SITU8/Webpageone.png",
+      "logourl": "SITU8/Webpageone.png",
+      "description": "Webpage one",
+      "appFeatureType": "Public",
+      "roles": null,
+      "showInDock": false,
+      "showInHome": false,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Webpageone",
+          "pageTemplate": "<div><\/div>",
+          "pageprocessor": "function pageprocessorWebpageone(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n\r\n  var iabRef;\r\n  if (window.device) {\r\n    $.blockUI();\r\n    iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes,enableViewportScale=yes,clearcache=yes\");\r\n  } else {\r\n    iabRef = window.open(pagedef.url, \"_blank\");\r\n\r\n  }\r\n\r\n  if (!window.device) {\r\n    window.history.back();\r\n  }\r\n\r\n  var hideBlockUi = function() {\r\n    $.unblockUI();\r\n    iabRef.show();\r\n  };\r\n  var iabClose = function(data) {\r\n    $.unblockUI();\r\n    iabRef.removeEventListener(\"exit\", iabClose);\r\n    window.history.back();\r\n  };\r\n  iabRef.addEventListener(\"exit\", iabClose);\r\n  var loadStop = function(data) {\r\n    hideBlockUi();\r\n    iabRef.removeEventListener(\"loadstop\", loadStop);\r\n  };\r\n  iabRef.addEventListener(\"loadstop\", loadStop);\r\n}",
+          "url": "https://www.singaporetech.edu.sg/directory/faculty"
         }
       ]
     }
